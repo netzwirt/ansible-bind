@@ -1,0 +1,55 @@
+// {{ansible_managed}}
+
+
+acl trusted {
+{% for allowed in bind_recursion_allowed_clients %}
+    {{allowed}};
+{% endfor %}
+    localhost;
+    localnets;
+};
+
+
+options {
+
+    directory "{{bind_cache_dir}}";
+
+    // If there is a firewall between you and nameservers you want
+    // to talk to, you may need to fix the firewall to allow multiple
+    // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+    recursion yes;
+    allow-query { trusted; };
+        
+{% if bind_forwarders is defined and bind_forwarders.0 is defined %}
+    forwarders {
+{% for forward in bind_forwarders %}
+        {{forward}};
+{% endfor %}
+    };
+{% if ( bind_zones is defined and bind_zones.0 is defined )
+ or ( bind_slave_for is defined and bind_slave_for.0 is defined ) %}
+    dnssec-validation auto;
+{% else %}
+    forward only;
+    dnssec-enable yes;
+    dnssec-validation yes;
+{% endif %}
+{% endif %}
+
+    //========================================================================
+    // If BIND logs error messages about the root key being expired,
+    // you will need to update your keys.  See https://www.isc.org/bind-keys
+    // Delete 'bind.keys' in your config directory and re-run ansible provisioning 
+    //========================================================================
+
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+{% if bind_listen is defined and bind_listen.0 is defined %}    
+    listen-on { 
+{% for listen in bind_listen %}
+        {{listen}};
+{% endfor %}
+    };
+{% endif %}
+};
