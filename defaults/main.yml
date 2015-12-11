@@ -3,10 +3,10 @@
 bind_config_dir: /etc/bind
 bind_cache_dir: /var/cache/bind
 
-# list all ip's and subnets that are allowed to to recursive queries
+# list all ip's and subnets that are allowed to do recursive queries
 bind_recursion_allowed_clients: []
 
-# delegate queries to this ip's
+# delegate queries to this nameservers
 bind_forwarders: []
 
 # which protocol should be used
