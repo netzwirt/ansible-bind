@@ -65,7 +65,7 @@
   shell: rndc-confgen -a -r /dev/urandom  
          -t {{bind_config_dir}} 
          -c {{bind_config_dir}}/rndc.key 2>/dev/null
-         ; exit 0
+         ; chmod 0640 {{bind_config_dir}}/rndc.key ; exit 0
     creates={{bind_config_dir}}/rndc.key
     executable=/bin/bash
   notify: [restart bind]
