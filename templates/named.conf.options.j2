@@ -27,7 +27,7 @@ options {
         {{forward}};
 {% endfor %}
     };
-{% if ( bind_zones is defined and bind_zones.0 is defined )
+{% if ( bind_zones is defined and bind_zones|length )
  or ( bind_slave_for is defined and bind_slave_for.0 is defined ) %}
     dnssec-validation auto;
 {% else %}
