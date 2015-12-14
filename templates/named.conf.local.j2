@@ -19,14 +19,13 @@ zone "{{key}}" {
     allow-transfer { 
 {% endif %}
 {% for secondary in zone.secondary %}
-        {{secondary}};
-{% endfor %}
+        {{secondary}};{% endfor %}
     }; {% endif %}       
 };
 
 {% endfor %}
 {% endif %}
-{# automatic slave from an ansible host in the same run #}
+{# automatic slave from an ansible host in the same inventory #}
 {% if bind_create_slave_from_master is defined and bind_create_slave_from_master.0 is defined %}
 {% for slave in bind_create_slave_from_master %}
 // generated slave for {{slave.master}}

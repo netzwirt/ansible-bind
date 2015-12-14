@@ -7,8 +7,7 @@ zone "{{zone_name}}" {
     type slave; # zone file type
     masters {
 {% for ip in item.master_address %}
-        {{ip}};
-{% endfor %}
+        {{ip}};{% endfor %}
     };
 }; 
 {% else %}
@@ -18,8 +17,7 @@ zone "{{zone_name}}" {
     type slave; # zone file type
     masters {
 {% for ip in item.master_address %}
-        {{ip}};
-{% endfor %}
+        {{ip}};{% endfor %}
     };
 }; 
 {% endif %}
