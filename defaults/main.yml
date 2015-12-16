@@ -1,12 +1,11 @@
 ---
 
-bind_config_dir: /etc/bind
-bind_cache_dir: /var/cache/bind
-
-# list all ip's and subnets that are allowed to do recursive queries
+# list all ip's and subnets 
+# allowed to do recursive queries
 bind_recursion_allowed_clients: []
 
-# delegate queries to this nameservers
+# delegate queries 
+# to this nameservers
 bind_forwarders: []
 
 # which protocol should be used
@@ -18,11 +17,12 @@ bind_use_protocol: any
 # if empty -> listen on all interfaces
 bind_listen: []
 
-# use rfc1918 rules or not (True/False)
+# use rfc1918 rules 
+# or not (Boolean)
 bind_rfc1918: False
 
-# lookup path for zone files, relative to playbook
-bind_lookup_zones: ./
+# lookup path for zone files
+bind_lookup_zones: "{{inventory_dir}}/files/bind"
 
 # zonefiles as dict
 bind_zones: {}
