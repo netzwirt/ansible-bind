@@ -13,6 +13,24 @@ Lookup path for master zone files on local ansible machine, relative to playbook
 
     bind_lookup_zones: path/to/zones_dir
 
+## ACLs
+
+Create bind ACLs in named.conf.options
+
+    bind_acls:
+      v6localhost:
+        - ::1/128
+      some_random_networks:
+        - 8.0.0.0/8
+        - 169.254.0.0/16
+
+## dns64 clients
+
+Create dns64 clients list in named.conf.options
+
+    bind_dns64_clients:
+      - v6localhost
+
 ## Zones definition
 
 Zones are defined as dict. The key is used as domain name. 

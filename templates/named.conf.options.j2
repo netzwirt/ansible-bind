@@ -1,6 +1,15 @@
 // {{ansible_managed}}
 
+{% if bind_acls is defined %}
+{% for name, match_list in bind_zones.iteritems() %}
+acl "{{name}}" }
+{% for entry in match_list %}
+  {{entry}};
+{% endfor %}
+};
 
+{% endfor %}
+{% endif %}
 acl trusted {
 {% for allowed in bind_recursion_allowed_clients %}
     {{allowed}};
@@ -21,7 +30,16 @@ options {
     recursion no;
     allow-query { any; };
     allow-recursion { trusted; };
-        
+
+{% if bind_dns64_clients is defined %}
+    dns64 64:ff9b::/96 {
+      clients {
+{% for client in bind_dns64_clients %}
+        "{{client}}";
+{% endfor %}
+      };
+    };
+{% endif %}
 {% if bind_forwarders is defined and bind_forwarders.0 is defined %}
     forwarders {
 {% for forward in bind_forwarders %}
