@@ -31,7 +31,7 @@ bind_zones: {}
 bind_create_slave_from_master: []
 
 # create ACLs in named.conf.options
-bind_acls: []
+bind_acls: {}
 
 # List clients for dns64 in named.conf.options
-bind_dns64_clients: []
+bind_dns64_clients: {}
