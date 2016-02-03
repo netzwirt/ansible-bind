@@ -1,11 +1,14 @@
 ---
 
+# authoritative only (no recursion)
+bind_authoritative_only: True
+
 # list all ip's and subnets 
-# allowed to do recursive queries
+# allowed to do recursive queries (bind_authoritative_only must be False)
 bind_recursion_allowed_clients: []
 
 # delegate queries 
-# to this nameservers
+# to this nameservers (bind_authoritative_only must be False)
 bind_forwarders: []
 
 # which protocol should be used
@@ -31,7 +34,8 @@ bind_zones: {}
 bind_create_slave_from_master: []
 
 # create ACLs in named.conf.options
+# as dict
 bind_acls: {}
 
 # List clients for dns64 in named.conf.options
-bind_dns64_clients: {}
+bind_dns64_clients: []

@@ -26,12 +26,16 @@ options {
     // If there is a firewall between you and nameservers you want
     // to talk to, you may need to fix the firewall to allow multiple
     // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
-
+{% if bind_authoritative_only %}
+    // turn of recursion globaly
     recursion no;
+{% endif %}
     allow-query { any; };
+{% if bind_authoritative_only == False %}
     allow-recursion { trusted; };
+{% endif %}
 
-{% if bind_dns64_clients is defined %}
+{% if bind_dns64_clients is defined and bind_dns64_clients.0 is defined %}
     dns64 64:ff9b::/96 {
       clients {
 {% for client in bind_dns64_clients %}
