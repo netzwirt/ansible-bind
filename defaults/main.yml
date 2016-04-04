@@ -30,6 +30,9 @@ bind_lookup_zones: "{{inventory_dir}}/files/bind"
 # zonefiles as dict
 bind_zones: {}
 
+# subdirectory for zone files
+bind_config_subdirectories: False
+
 # create slave from master
 bind_create_slave_from_master: []
 
@@ -39,3 +42,4 @@ bind_acls: {}
 
 # List clients for dns64 in named.conf.options
 bind_dns64_clients: []
+
