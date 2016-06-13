@@ -81,6 +81,7 @@
   notify: [restart bind]
   when: item.value.type == "master" and item.value.nocopy is not defined
   with_dict: "{{ bind_zones }}"
+  register: _bind_zones_changed
 
 
 - name: build slave zones from master
