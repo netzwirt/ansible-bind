@@ -3,19 +3,19 @@
 
 - name: create group for bind
   group: 
-    name={{bind_group}} 
-    system=yes
-    state=present
+    name: "{{ bind_group }}"
+    system: yes
+    state: present
 
 
 - name: create user for bind
   user: 
-    name={{bind_user}} 
-    comment="bind-user"
-    group={{bind_group}}
-    system=yes
-    state=present
-    createhome=no
+    name: "{{ bind_user }}"
+    comment: "bind-user"
+    group: "{{ bind_group }}"
+    system: yes
+    state: present
+    createhome: no
 
 
 - name: installing packages with apt
@@ -28,6 +28,6 @@
 
 - name: ensure bind is started
   service: 
-    name={{bind_service_name}} 
-    state=started 
-    enabled=yes
+    name: "{{ bind_service_name }}"
+    state: started 
+    enabled: yes
