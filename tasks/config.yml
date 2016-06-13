@@ -79,7 +79,7 @@
     owner: "{{ bind_user }}" 
     group: "{{ bind_group }}"
   notify: [restart bind]
-  when: item.value.type == "master"
+  when: item.value.type == "master" and item.value.nocopy is not defined
   with_dict: "{{ bind_zones }}"
 
 
