@@ -20,6 +20,8 @@ zone "{{key}}" {
 {% endif %}
 {% for secondary in zone.secondary %}
         {{secondary}};{% endfor %}
+{% for secondary in bind_allow_transfer %}
+        {{secondary}};{% endfor %}
     }; {% endif %}       
 };
 

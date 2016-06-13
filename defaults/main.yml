@@ -43,3 +43,5 @@ bind_acls: {}
 # List clients for dns64 in named.conf.options
 bind_dns64_clients: []
 
+# Additional ip's that are allowd to do axfr queries
+bind_allow_transfer: []
