@@ -9,18 +9,22 @@ include "{{bind_config_dir}}/zones.rfc1918";
 {% for key, zone in bind_zones.iteritems() %}
 zone "{{key}}" {
     type {{zone.type|default('master')}}; # zone file type
+{% if zone.type is not defined or zone.type is defined and zone.type != 'forward' %}
     file "{{bind_cache_dir}}/db.{{key}}"; # zone file path
+{% endif %}
 {% if zone.secondary is defined and zone.secondary.0 is defined %}
 {% if zone.type is defined and zone.type == 'slave' %}
     # masters ip adresses
     masters { 
+{% elif zone.type is defined and zone.type == 'forward' %}
+    forwarders {
 {% else %}
     # secondary ip adresses
     allow-transfer { 
+{% for secondary in bind_allow_transfer %}
+        {{secondary}};{% endfor %}
 {% endif %}
 {% for secondary in zone.secondary %}
-        {{secondary}};{% endfor %}
-{% for secondary in bind_allow_transfer %}
         {{secondary}};{% endfor %}
     }; {% endif %}       
 };

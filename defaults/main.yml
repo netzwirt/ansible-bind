@@ -45,3 +45,7 @@ bind_dns64_clients: []
 
 # Additional ip's that are allowd to do axfr queries
 bind_allow_transfer: []
+
+bind_chroot: False
+
+bind_config_file: "{{bind_config_dir}}/named.conf"

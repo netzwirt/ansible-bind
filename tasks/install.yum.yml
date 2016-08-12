@@ -1,0 +1,6 @@
+---
+# tasks file for bind-chroot
+- name: install required bind-chroot package
+  yum: name={{item}}
+  with_items:
+    - bind-chroot

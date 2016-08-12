@@ -2,14 +2,14 @@
 # tasks file for netzwirt.bind
 
 - name: create group for bind
-  group: 
+  group:
     name: "{{ bind_group }}"
     system: yes
     state: present
 
 
 - name: create user for bind
-  user: 
+  user:
     name: "{{ bind_user }}"
     comment: "bind-user"
     group: "{{ bind_group }}"
@@ -22,12 +22,19 @@
   include: install.apt.yml
   when: ansible_os_family == 'Debian'
 
+- name: installing packages with yum
+  include: install.yum.yml
+  when: ansible_os_family == 'RedHat'
+
 
 - include: config.yml
+  when: ansible_os_family == 'Debian'
 
+- include: config.el.yml
+  when: ansible_os_family == 'RedHat'
 
 - name: ensure bind is started
-  service: 
+  service:
     name: "{{ bind_service_name }}"
-    state: started 
+    state: started
     enabled: yes
