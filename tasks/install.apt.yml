@@ -3,8 +3,10 @@
 # install required packages with apt
 
 - name: install required bind packages
-  apt: name={{item}}
-  with_items: 
+  apt:
+    state: latest
+    install_recommends: no
+    package:
     - bind9  
     - bind9utils
     - bind9-doc
