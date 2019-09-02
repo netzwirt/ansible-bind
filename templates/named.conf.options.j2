@@ -1,7 +1,7 @@
 // {{ansible_managed}}
 
 {% if bind_acls is defined %}
-{% for name, match_list in bind_acls.iteritems() %}
+{% for name, match_list in bind_acls.items() | list %}
 acl "{{name}}" {
 {% for entry in match_list %}
   {{entry}};

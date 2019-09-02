@@ -6,7 +6,7 @@ include "{{bind_config_dir}}/zones.rfc1918";
 {% endif %}
 
 {% if bind_zones is defined %}
-{% for key, zone in bind_zones.iteritems() %}
+{% for key, zone in bind_zones.items() | list %}
 zone "{{key}}" {
     type {{zone.type|default('master')}}; # zone file type
     file "{{bind_cache_dir}}/db.{{key}}"; # zone file path

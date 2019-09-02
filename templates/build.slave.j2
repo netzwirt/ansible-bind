@@ -1,6 +1,6 @@
 // {{ansible_managed}}
 
-{% for zone_name, values in hostvars[item.master]['bind_zones'].iteritems() %}{# create slave zones out of another bind host #}
+{% for zone_name, values in hostvars[item.master]['bind_zones'].items() | list %}{# create slave zones out of another bind host #}
 {% if item.master_address is defined and item.master_address.0 is defined %}{# we need a master ip #}
 
 {%- if item.limit_to is defined %}
