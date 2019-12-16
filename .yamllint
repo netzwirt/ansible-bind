@@ -1,0 +1,24 @@
+---
+extends: default
+ignore: |
+  *.sh
+  *.md
+
+rules:
+  braces:
+    max-spaces-inside: 1
+    level: error
+  brackets:
+    max-spaces-inside: 1
+  comments:
+    level: error
+  document-start:
+    level: error
+  indentation:
+    spaces: 2
+    indent-sequences: false
+  line-length:
+    max: 160
+    level: error
+  truthy:
+    level: error
