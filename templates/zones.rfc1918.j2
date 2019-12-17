@@ -1,4 +1,4 @@
-// {{ansible_managed}}
+{{ ansible_managed | comment('c') }}
 // empty reverse zones for private networks
 
 zone "10.in-addr.arpa"      { type master; file "{{bind_config_dir}}/db.empty"; };

@@ -1,4 +1,4 @@
-// {{ansible_managed}}
+{{ ansible_managed | comment('c') }}
 
 {% if bind_acls is defined %}
 {% for name, match_list in bind_acls.items() | list %}
