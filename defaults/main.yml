@@ -40,6 +40,9 @@ bind_create_slave_from_master: []
 # as dict
 bind_acls: {}
 
+# create statistics-channels for monitoring.
+bind_statistics_channels: []
+
 # List clients for dns64 in named.conf.options
 bind_dns64_clients: []
 

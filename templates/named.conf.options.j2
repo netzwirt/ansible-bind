@@ -18,7 +18,18 @@ acl trusted {
     localnets;
 };
 
+{% if bind_statistics_channels | length %}
+statistics-channels {
+{% for channel in bind_statistics_channels %}
+    inet {{ channel.inet }} port {{ channel.port }} allow {
+{% for allow in channel.allow %}
+        {{ allow }};
+{% endfor %}
+    };
+{% endfor %}
+};
 
+{% endif %}
 options {
 
     directory "{{bind_cache_dir}}";

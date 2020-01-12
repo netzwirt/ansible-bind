@@ -31,6 +31,19 @@ Create dns64 clients list in named.conf.options
 bind_dns64_clients:
   - v6localhost
 ```
+
+## statistics-channels
+
+Enable the use of [statistics-channels](https://kb.isc.org/docs/aa-00769). This allows for monitoring via systems like the [Prometheus bind_exporter](https://github.com/prometheus-community/bind_exporter).
+
+```yaml
+bind_statistics_channels:
+  - inet: 127.0.0.1
+    port: 8053
+    allow:
+      - 127.0.0.1
+```
+
 ## Zones definition
 
 Zones are defined as dict. The key is used as domain name.
