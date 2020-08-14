@@ -4,23 +4,21 @@
 
 
 - name: get root.db file from internic.net
-  get_url: 
-    url: "ftp://ftp.rs.internic.net/domain/db.cache" 
+  get_url:
+    url: "ftp://ftp.rs.internic.net/domain/db.cache"
     dest: "{{ bind_config_dir }}/db.root"
     url_password: "ftp"
     url_username: "ftp"
 
-
 - name: get bind.keys from isc.org
-  get_url: 
+  get_url:
     url: "http://ftp.isc.org/isc/bind9/keys/9.8/bind.keys.v9_8"
     dest: "{{ bind_config_dir }}/bind.keys"
     url_password: "ftp"
     url_username: "ftp"
 
-
 - name: create db-files
-  copy: 
+  copy:
     dest: "{{ bind_config_dir }}/{{ item }}"
     src: "{{ item }}"
     owner: root
@@ -62,21 +60,21 @@
 
 
 - name: create rndc key
-  shell: rndc-confgen -a -r /dev/urandom  
-         -t {{ bind_config_dir }} 
+  shell: rndc-confgen -a -r /dev/urandom
+         -t {{ bind_config_dir }}
          -c {{ bind_config_dir }}/rndc.key 2>/dev/null
          ; chmod 0640 {{ bind_config_dir }}/rndc.key ; exit 0
   args:
-      creates: "{{ bind_config_dir }}/rndc.key"
-      executable: /bin/bash
+    creates: "{{ bind_config_dir }}/rndc.key"
+    executable: /bin/bash
   notify: [restart bind]
 
 
 - name: copy master zone files
   copy:
     src: "{{ bind_lookup_zones }}/db.{{ item.key }}"
-    dest: "{{ bind_cache_dir }}/db.{{ item.key }}" 
-    owner: "{{ bind_user }}" 
+    dest: "{{ bind_cache_dir }}/db.{{ item.key }}"
+    owner: "{{ bind_user }}"
     group: "{{ bind_group }}"
   notify: [restart bind]
   when: item.value.type == "master" and item.value.nocopy is not defined

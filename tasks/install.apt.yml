@@ -5,9 +5,9 @@
 - name: install required bind packages
   apt:
     state: latest
-    install_recommends: no
+    install_recommends: false
     package:
-    - bind9  
+    - bind9
     - bind9utils
     - bind9-doc
 
@@ -28,4 +28,3 @@
     group: bind
     mode: 0775
   when: bind_config_subdirectories
-

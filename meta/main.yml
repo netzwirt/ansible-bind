@@ -13,11 +13,11 @@ galaxy_info:
     versions:
     - jessie
 
-  categories:
+  galaxy_tags:
   - networking
   - web
-  - dns 
-    
+  - dns
+
 dependencies: []
-  
-allow_duplicates: yes 
+
+allow_duplicates: true

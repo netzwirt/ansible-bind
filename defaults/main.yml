@@ -1,13 +1,13 @@
 ---
 
 # authoritative only (no recursion)
-bind_authoritative_only: True
+bind_authoritative_only: true
 
-# list all ip's and subnets 
+# list all ip's and subnets
 # allowed to do recursive queries (bind_authoritative_only must be False)
 bind_recursion_allowed_clients: []
 
-# delegate queries 
+# delegate queries
 # to this nameservers (bind_authoritative_only must be False)
 bind_forwarders: []
 
@@ -20,9 +20,9 @@ bind_use_protocol: any
 # if empty -> listen on all interfaces
 bind_listen: []
 
-# use rfc1918 rules 
+# use rfc1918 rules
 # or not (Boolean)
-bind_rfc1918: False
+bind_rfc1918: false
 
 # lookup path for zone files
 bind_lookup_zones: "{{inventory_dir}}/files/bind"
@@ -31,7 +31,7 @@ bind_lookup_zones: "{{inventory_dir}}/files/bind"
 bind_zones: {}
 
 # subdirectory for zone files
-bind_config_subdirectories: False
+bind_config_subdirectories: false
 
 # create slave from master
 bind_create_slave_from_master: []
